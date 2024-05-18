@@ -36,6 +36,7 @@ public class ItemObject : MonoBehaviour
         Inventory.Instance.Add(_type);
         UiManager.Instance.HideHotkeys();
         UiManager.Instance.HideObjectInfo();
+        AudioManager.Instanse.Play(AudioType.PickUp);
         Destroy(gameObject);
         OnPicked?.Invoke();
     }

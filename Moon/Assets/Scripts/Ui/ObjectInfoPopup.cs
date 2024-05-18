@@ -28,6 +28,12 @@ public class ObjectInfoPopup : MonoBehaviour
         }
     }
 
+    public void Show(string title, string description, bool edible)
+    {
+        title += $"\n{(edible ? "<color=green>Съедобно" : "<color=red>Несъедобно")}</color>";
+        Show(title, description);
+    }
+
     public void Hide()
     {
         if (_isShown)

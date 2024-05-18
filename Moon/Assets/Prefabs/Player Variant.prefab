@@ -639,6 +639,7 @@ MonoBehaviour:
   _cameraTransform: {fileID: 0}
   _aimCamera: {fileID: 0}
   _aimMovementOffset: 18.5
+  _shootDelay: 1
 --- !u!143 &7722367924078725465
 CharacterController:
   m_ObjectHideFlags: 0

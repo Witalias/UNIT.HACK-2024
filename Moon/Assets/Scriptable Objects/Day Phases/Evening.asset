@@ -18,4 +18,4 @@ MonoBehaviour:
   _phaseDuration: 0
   _transitionDuration: 30
   _skipPhase: 0
-  _embientAudio: 0
+  _embientAudio: 8

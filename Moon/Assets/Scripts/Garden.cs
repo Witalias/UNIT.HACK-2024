@@ -123,12 +123,13 @@ public class Garden : MonoBehaviour
     private void Plant()
     {
         var selectedItem = Inventory.Instance.SelectedItem;
-        if (_stage is GrowthStage.Empty && selectedItem != null && Inventory.Instance.IsSelect(_seeds) && Inventory.Instance.TryPeek(selectedItem.Value))
+        if (_stage is GrowthStage.Empty && Inventory.Instance.IsSelect(_seeds) && Inventory.Instance.TryPeekSelected())
         {
-            _currentPlantSeed = ItemType.Plant1Seed;
+            _currentPlantSeed = selectedItem.Value;
             _currentPlantObj = Instantiate(_plantsInfo[_currentPlantSeed].Prefab, _plantPoint.position, Quaternion.identity, transform);
             _stage = GrowthStage.Growth;
             _targetPlantScale = _currentPlantObj.transform.localScale.x;
+            AudioManager.Instanse.Play(AudioType.Plant);
             ProcessGrowth();
             OnStageChanged();
             OnInteract?.Invoke();
@@ -186,6 +187,7 @@ public class Garden : MonoBehaviour
             _stage = GrowthStage.Empty;
             _requirenment = PlantRequirenment.No;
             Inventory.Instance.Add(_currentPlantSeed);
+            AudioManager.Instanse.Play(AudioType.Uproot);
             OnStageChanged();
             Destroy(_currentPlantObj);
             OnInteract?.Invoke();
@@ -202,6 +204,10 @@ public class Garden : MonoBehaviour
                 _stage = GrowthStage.Growth;
                 _requirenment = PlantRequirenment.No;
                 _growthStep++;
+                if (_requirenment is PlantRequirenment.Water)
+                    AudioManager.Instanse.Play(AudioType.Water);
+                else if (_requirenment is PlantRequirenment.Fertilizer)
+                    AudioManager.Instanse.Play(AudioType.Plant);
                 OnStageChanged();
                 ProcessGrowth();
                 OnInteract?.Invoke();

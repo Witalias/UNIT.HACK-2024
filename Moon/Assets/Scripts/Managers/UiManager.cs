@@ -11,6 +11,8 @@ public class UiManager : MonoBehaviour
     [SerializeField] private LayerMask _excludePlayerLayers;
     [SerializeField] private PlantInfoPopup _plantInfoPopup;
     [SerializeField] private ObjectInfoPopup _objectInfoPopup;
+    [SerializeField] private HealthBar _healthBar;
+    [SerializeField] private NotePopup _notePopup;
 
     private Camera _mainCamera;
     private Interactable _previousInteracrable;
@@ -83,6 +85,11 @@ public class UiManager : MonoBehaviour
         _objectInfoPopup.Show(title, description);
     }
 
+    public void ShowObjectInfo(string title, string description, bool edible)
+    {
+        _objectInfoPopup.Show(title, description, edible);
+    }
+
     public void HideObjectInfo()
     {
         _objectInfoPopup.Hide();
@@ -91,6 +98,16 @@ public class UiManager : MonoBehaviour
     public void RefreshObjectInfoPosition(Vector3 position)
     {
         _objectInfoPopup.transform.position = _mainCamera.WorldToScreenPoint(position) + new Vector3(-150.0f, 100.0f);
+    }
+
+    public void AddHealth(float value)
+    {
+        _healthBar.Add(value);
+    }
+
+    public void ShowNote(string text, bool activeImage = false)
+    {
+        _notePopup.Show(text, activeImage);
     }
 
     private IEnumerator CheckMouseOver()

@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System;
 using TMPro;
 using UnityEngine;
 
@@ -9,10 +10,17 @@ public class Inventory : MonoBehaviour
     [SerializeField] private Cell[] _cells;
     [SerializeField] private Transform _selectionTransform;
     [SerializeField] private TMP_Text _nameText;
-    //[SerializeField] private GameObject _hotkeysText;
+    [SerializeField] private Hotkey _hotkey;
 
     private int _currentSelectedCellIndex;
     private Tween _currentTween;
+
+    public static ItemType[] FoodItems = new[]
+    {
+        ItemType.Plant1,
+        ItemType.Plant2,
+        ItemType.Plant3,
+    };
 
     public ItemType? SelectedItem
     {
@@ -90,6 +98,16 @@ public class Inventory : MonoBehaviour
         return false;
     }
 
+    public bool TryPeekSelected()
+    {
+        if (_cells[_currentSelectedCellIndex].Count > 0)
+        {
+            _cells[_currentSelectedCellIndex].Reduce();
+            return true;
+        }
+        return false;
+    }
+
     public bool IsExist(ItemType item)
     {
         foreach (var cell in _cells)
@@ -129,15 +147,17 @@ public class Inventory : MonoBehaviour
             if (--_currentSelectedCellIndex < 0)
                 _currentSelectedCellIndex = _cells.Length - 1;
         }
-        //_hotkeysText.SetActive(_cells[_currentSelectedCellIndex].Count > 0);
-        UpdateNameText();
-        _currentTween?.Kill();
-        _currentTween = _selectionTransform.DOMove(_cells[_currentSelectedCellIndex].transform.position, 0.1f);
+        MoveSelection();
     }
 
     private void SelectCell(int index)
     {
         _currentSelectedCellIndex = index;
+        MoveSelection();
+    }
+
+    private void MoveSelection()
+    {
         UpdateNameText();
         _currentTween?.Kill();
         _currentTween = _selectionTransform.DOMove(_cells[_currentSelectedCellIndex].transform.position, 0.1f);
@@ -146,9 +166,15 @@ public class Inventory : MonoBehaviour
     private void UpdateNameText()
     {
         if (_cells[_currentSelectedCellIndex].Count > 0)
+        { 
             _nameText.text = GameData.Instance.GetItemData(_cells[_currentSelectedCellIndex].Item).Name;
+        }
         else
+        {
             _nameText.text = string.Empty;
+        }
+        _hotkey.gameObject.SetActive(_cells[_currentSelectedCellIndex].Count > 0 &&
+            Array.Exists(FoodItems, (element) => element == _cells[_currentSelectedCellIndex].Item));
     }
 }
 

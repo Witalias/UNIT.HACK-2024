@@ -36,8 +36,10 @@ public class Player : MonoBehaviour
     [SerializeField] private Transform _cameraTransform;
     [SerializeField] private GameObject _aimCamera;
     [SerializeField] private float _aimMovementOffset;
+    [SerializeField] private float _shootDelay;
 
     private bool _isAim;
+    private bool _canShoot = true;
 
     //Ladder
     // public Transform chTransform;
@@ -62,6 +64,7 @@ public class Player : MonoBehaviour
     {
         Garden.OnInteract += PlayInteractAnimation;
         ItemObject.OnPicked += PlayInteractAnimation;
+        HealthBar.OnEated += PlayInteractAnimation;
         Garden.PlayerIsAim += GetIsAim;
         InteractableWithInfo.PlayerIsAim += GetIsAim;
     }
@@ -70,6 +73,7 @@ public class Player : MonoBehaviour
     {
         Garden.OnInteract -= PlayInteractAnimation;
         ItemObject.OnPicked -= PlayInteractAnimation;
+        HealthBar.OnEated -= PlayInteractAnimation;
         Garden.PlayerIsAim -= GetIsAim;
         InteractableWithInfo.PlayerIsAim -= GetIsAim;
     }
@@ -131,15 +135,13 @@ public class Player : MonoBehaviour
 
             Quaternion toRotation = Quaternion.LookRotation(movementDirection, Vector3.up);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
-            //Quaternion toRotation = Quaternion.Euler(0, _cameraTransform.eulerAngles.y, 0);
-            //transform.rotation = Quaternion.Lerp(transform.rotation, toRotation, Time.deltaTime * rotationSpeed);
         }
         else
         {
             animator.SetBool("Walk", false);
         }
 
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1") && _isAim)
         {
             Shoot();
         }
@@ -166,10 +168,28 @@ public class Player : MonoBehaviour
         SetRunState(Input.GetKey(KeyCode.LeftShift));
     }
 
+    public void PlayStep()
+    {
+        AudioManager.Instanse.Play(AudioType.Step);
+    }
+
     void Shoot()
     {
-        var bullet = Instantiate(heroBullet, spawnHBullets.position, spawnHBullets.rotation);
-        bullet.GetComponent<Rigidbody>().velocity = spawnHBullets.forward * bulletSpeed;
+        if (_canShoot)
+        {
+            var direction = spawnHBullets.forward;
+            var ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f));
+            if (Physics.Raycast(ray, out var hit, 100.0f))
+            {
+                direction = hit.point - spawnHBullets.position;
+            }
+            var bullet = Instantiate(heroBullet, spawnHBullets.position, spawnHBullets.rotation);
+            bullet.GetComponent<Rigidbody>().velocity = direction * bulletSpeed;
+            animator.SetTrigger("Shoot");
+            AudioManager.Instanse.Play(AudioType.Shoot);
+            _canShoot = false;
+            DOVirtual.DelayedCall(_shootDelay, () => _canShoot = true);
+        }
     }
 
     void SetRunState(bool value)
