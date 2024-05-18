@@ -9,10 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee318da80f4d5b3458dccf1a06928cc8, type: 3}
-  m_Name: Fertilizer
+  m_Script: {fileID: 11500000, guid: 25aeaa032ce62d54d80edf192bbe6d27, type: 3}
+  m_Name: Night
   m_EditorClassIdentifier: 
-  _type: 1
-  _sprite: {fileID: 21300000, guid: 483696b009da2914e8471d5d4c9107ff, type: 3}
-  _name: "\u0423\u0434\u043E\u0431\u0440\u0435\u043D\u0438\u0435"
-  _description: 
+  _type: 2
+  _sunColor: {r: 0.5137255, g: 0.5921569, b: 1, a: 1}
+  _sunIntensity: 0.4
+  _phaseDuration: 20
+  _transitionDuration: 20
+  _skipPhase: 0
+  _embientAudio: 0

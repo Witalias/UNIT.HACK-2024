@@ -21,6 +21,13 @@ public class Garden : MonoBehaviour
     private Dictionary<ItemType, PlantData> _plantsInfo;
     private bool _plantInfoIsShown;
 
+    private readonly ItemType[] _seeds = new[]
+    {
+        ItemType.Plant1Seed,
+        ItemType.Plant2Seed,
+        ItemType.Plant3Seed
+    };
+
     public static event Action OnInteract;
     public static event Func<bool> PlayerIsAim;
 
@@ -115,7 +122,8 @@ public class Garden : MonoBehaviour
 
     private void Plant()
     {
-        if (_stage is GrowthStage.Empty)
+        var selectedItem = Inventory.Instance.SelectedItem;
+        if (_stage is GrowthStage.Empty && selectedItem != null && Inventory.Instance.IsSelect(_seeds) && Inventory.Instance.TryPeek(selectedItem.Value))
         {
             _currentPlantSeed = ItemType.Plant1Seed;
             _currentPlantObj = Instantiate(_plantsInfo[_currentPlantSeed].Prefab, _plantPoint.position, Quaternion.identity, transform);
@@ -164,6 +172,7 @@ public class Garden : MonoBehaviour
     {
         if (_stage is GrowthStage.Harvest)
         {
+            Inventory.Instance.Add(_plantsInfo[_currentPlantSeed].PlantType);
             _stage = GrowthStage.Empty;
             Destroy(_currentPlantObj);
             OnInteract?.Invoke();
@@ -193,7 +202,9 @@ public class Garden : MonoBehaviour
                 _stage = GrowthStage.Growth;
                 _requirenment = PlantRequirenment.No;
                 _growthStep++;
+                OnStageChanged();
                 ProcessGrowth();
+                OnInteract?.Invoke();
             }
         }
     }
@@ -213,7 +224,8 @@ public class Garden : MonoBehaviour
         switch (_stage)
         {
             case GrowthStage.Empty:
-                UiManager.Instance.ShowHotkeys(new Hotkey.Data { Key = "E", Description = "Посадить" });
+                if (Inventory.Instance.IsSelect(_seeds))
+                    UiManager.Instance.ShowHotkeys(new Hotkey.Data { Key = "E", Description = "Посадить" });
                 break;
             case GrowthStage.Growth:
             case GrowthStage.Require:
@@ -244,7 +256,10 @@ public class Garden : MonoBehaviour
             ShowHotkeys();
             var playerIsAim = PlayerIsAim?.Invoke();
             if (playerIsAim.GetValueOrDefault())
+            {
                 _plantInfoIsShown = false;
+                ShowPlantInfo();
+            }
         }
     }
 

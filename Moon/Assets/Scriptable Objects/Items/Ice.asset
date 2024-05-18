@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Ice
   m_EditorClassIdentifier: 
   _type: 0
-  _sprite: {fileID: 0}
+  _sprite: {fileID: 21300000, guid: 3cec42851dfe1f8458457bf5de1f84ea, type: 3}
   _name: "\u041A\u0440\u0438\u0441\u0442\u0430\u043B\u043B \u043B\u044C\u0434\u0430"
   _description: 
