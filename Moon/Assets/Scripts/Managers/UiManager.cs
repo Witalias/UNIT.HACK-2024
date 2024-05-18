@@ -82,7 +82,7 @@ public class UiManager : MonoBehaviour
 
     private IEnumerator CheckMouseOver()
     {
-        var wait = new WaitForSeconds(0.2f);
+        var wait = new WaitForSeconds(0.05f);
         while (true)
         {
             var ray = _mainCamera.ViewportPointToRay(new Vector2(0.5f, 0.5f));
