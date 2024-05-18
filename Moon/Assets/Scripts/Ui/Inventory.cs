@@ -50,10 +50,10 @@ public class Inventory : MonoBehaviour
             if (cell.Count <= 0)
             {
                 cell.SetItem(item);
+                UpdateNameText();
                 return;
             } 
         }
-        UpdateNameText();
     }
 
     public bool TryPeek(ItemType item)
@@ -66,6 +66,16 @@ public class Inventory : MonoBehaviour
                 UpdateNameText();
                 return true;
             }
+        }
+        return false;
+    }
+
+    public bool IsExist(ItemType item)
+    {
+        foreach (var cell in _cells)
+        {
+            if (cell.Count > 0 && cell.Item == item)
+                return true;
         }
         return false;
     }

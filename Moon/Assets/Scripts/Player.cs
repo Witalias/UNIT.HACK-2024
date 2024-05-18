@@ -1,3 +1,5 @@
+using Cinemachine;
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -45,7 +47,6 @@ public class Player : MonoBehaviour
     // public bool isClimbingLadder;
     // private Vector3 lastGrabLadderDirection;
 
-
     void Start()
     {
         charController = GetComponent<CharacterController>();
@@ -60,6 +61,7 @@ public class Player : MonoBehaviour
     private void OnEnable()
     {
         Garden.OnInteract += PlayInteractAnimation;
+        ItemObject.OnPicked += PlayInteractAnimation;
         Garden.PlayerIsAim += GetIsAim;
         InteractableWithInfo.PlayerIsAim += GetIsAim;
     }
@@ -67,6 +69,7 @@ public class Player : MonoBehaviour
     private void OnDisable()
     {
         Garden.OnInteract -= PlayInteractAnimation;
+        ItemObject.OnPicked -= PlayInteractAnimation;
         Garden.PlayerIsAim -= GetIsAim;
         InteractableWithInfo.PlayerIsAim -= GetIsAim;
     }
@@ -141,10 +144,14 @@ public class Player : MonoBehaviour
             Shoot();
         }
 
+        if (_isAim)
+        {
+            transform.eulerAngles = new Vector3(0.0f, _cameraTransform.eulerAngles.y, 0.0f);
+        }
         if (Input.GetButtonDown("Fire2"))
         {
-            Vector3 dirToCombatLookAt = _aimCamera.transform.position - new Vector3(transform.position.x, _aimCamera.transform.position.y, transform.position.z);
-            transform.forward = dirToCombatLookAt.normalized;
+            //var angle = Quaternion.LookRotation(_cameraTransform.position - transform.position).eulerAngles;
+            //transform.eulerAngles = new Vector3(0.0f, _cameraTransform.eulerAngles.y, 0.0f);
             _isAim = true;
             animator.SetBool("Aim", true);
             _aimCamera.SetActive(true);
@@ -154,11 +161,6 @@ public class Player : MonoBehaviour
             _isAim = false;
             animator.SetBool("Aim", false);
             _aimCamera.SetActive(false);
-        }
-        if (_isAim)
-        {
-            Vector3 dirToCombatLookAt = _aimCamera.transform.position - new Vector3(transform.position.x, _aimCamera.transform.position.y, transform.position.z);
-            transform.forward = -dirToCombatLookAt.normalized;
         }
 
         SetRunState(Input.GetKey(KeyCode.LeftShift));

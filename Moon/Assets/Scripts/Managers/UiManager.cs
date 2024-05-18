@@ -36,6 +36,19 @@ public class UiManager : MonoBehaviour
         }
     }
 
+    public void AddHotkey(Hotkey.Data hotkeyData)
+    {
+        foreach (var hotkey in _hotkeys)
+        {
+            if (!hotkey.gameObject.activeSelf)
+            {
+                hotkey.SetData(hotkeyData);
+                hotkey.gameObject.SetActive(true);
+                return;
+            }
+        }
+    }
+
     public void HideHotkeys()
     {
         foreach (var hotkey in _hotkeys)
@@ -77,7 +90,7 @@ public class UiManager : MonoBehaviour
 
     public void RefreshObjectInfoPosition(Vector3 position)
     {
-        _objectInfoPopup.transform.position = _mainCamera.WorldToScreenPoint(position) - new Vector3(20.0f, 20.0f);
+        _objectInfoPopup.transform.position = _mainCamera.WorldToScreenPoint(position) + new Vector3(-150.0f, 100.0f);
     }
 
     private IEnumerator CheckMouseOver()
@@ -86,12 +99,14 @@ public class UiManager : MonoBehaviour
         while (true)
         {
             var ray = _mainCamera.ViewportPointToRay(new Vector2(0.5f, 0.5f));
-            if (Physics.Raycast(ray, out var hit, 100.0f, _excludePlayerLayers))
+            if (Physics.Raycast(ray, out var hit, 10.0f, _excludePlayerLayers))
             {
                 if (hit.collider.TryGetComponent<Interactable>(out var interactable))
                 {
                     if (interactable != _previousInteracrable)
                     {
+                        if (_previousInteracrable != null)
+                            _previousInteracrable.SetMouseIsOver(false);
                         _previousInteracrable = interactable;
                         interactable.SetMouseIsOver(true);
                     }
@@ -101,6 +116,11 @@ public class UiManager : MonoBehaviour
                     _previousInteracrable.SetMouseIsOver(false);
                     _previousInteracrable = null;
                 }
+            }
+            else if (_previousInteracrable != null)
+            {
+                _previousInteracrable.SetMouseIsOver(false);
+                _previousInteracrable = null;
             }
             yield return wait;
         }

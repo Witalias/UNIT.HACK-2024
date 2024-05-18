@@ -42,6 +42,7 @@ public class Garden : MonoBehaviour
             {
                 Plant();
                 Harvest();
+                ApplyCurrentItem();
             }
             else if (Input.GetKeyDown(KeyCode.R))
             {
@@ -186,9 +187,14 @@ public class Garden : MonoBehaviour
     {
         if (_stage == GrowthStage.Require)
         {
-            _stage = GrowthStage.Growth;
-            _growthStep++;
-            ProcessGrowth();
+            if ((_requirenment is PlantRequirenment.Water && Inventory.Instance.TryPeek(ItemType.Water)) ||
+                _requirenment is PlantRequirenment.Fertilizer && Inventory.Instance.TryPeek(ItemType.Fertilizer))
+            {
+                _stage = GrowthStage.Growth;
+                _requirenment = PlantRequirenment.No;
+                _growthStep++;
+                ProcessGrowth();
+            }
         }
     }
 
@@ -212,6 +218,17 @@ public class Garden : MonoBehaviour
             case GrowthStage.Growth:
             case GrowthStage.Require:
                 UiManager.Instance.ShowHotkeys(new Hotkey.Data { Key = "R", Description = "Выкорчевать" });
+                switch (_requirenment)
+                {
+                    case PlantRequirenment.Water:
+                        if (Inventory.Instance.IsExist(ItemType.Water))
+                            UiManager.Instance.AddHotkey(new Hotkey.Data { Key = "E", Description = "Напоить" });
+                        break;
+                    case PlantRequirenment.Fertilizer:
+                        if (Inventory.Instance.IsExist(ItemType.Fertilizer))
+                            UiManager.Instance.AddHotkey(new Hotkey.Data { Key = "E", Description = "Удобрить" });
+                        break;
+                }
                 break;
             case GrowthStage.Harvest:
                 UiManager.Instance.ShowHotkeys(new Hotkey.Data { Key = "E", Description = "Собрать" },
