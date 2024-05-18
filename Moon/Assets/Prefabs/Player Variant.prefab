@@ -12,7 +12,7 @@ GameObject:
   m_Layer: 7
   m_Name: Bullet Spawn Point
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 699922743424355898}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.02, y: 1.287, z: 0.194}
+  m_LocalPosition: {x: -0.074, y: 1.547, z: 0.818}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -56,6 +56,37 @@ Transform:
   m_GameObject: {fileID: 3304231592959265739}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.5, y: 1.73, z: 0.072}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2647421055191832858}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3565503355510829095
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5196890576380022789}
+  m_Layer: 7
+  m_Name: Center Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5196890576380022789
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3565503355510829095}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.288, z: 0.072}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -591,6 +622,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 57bd31e0f69732149b7c74daed09a139, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3275481255568504004}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 57bd31e0f69732149b7c74daed09a139, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5196890576380022789}
     - targetCorrespondingSourceObject: {fileID: 320179479428049405, guid: 57bd31e0f69732149b7c74daed09a139, type: 3}
       insertIndex: -1
       addedObject: {fileID: 820373102521596222}
@@ -635,11 +669,13 @@ MonoBehaviour:
   jumpSpeed: 0
   heroBullet: {fileID: 6692728257152003529, guid: fa90112b494a8da4c96fd664a6d1af70, type: 3}
   spawnHBullets: {fileID: 8723985232528615147}
-  bulletSpeed: 20
+  bulletSpeed: 70
   _cameraTransform: {fileID: 0}
+  _centerPoint: {fileID: 5196890576380022789}
   _aimCamera: {fileID: 0}
   _aimMovementOffset: 18.5
-  _shootDelay: 1
+  _shootDelay: 0.6
+  _damage: 0.4
 --- !u!143 &7722367924078725465
 CharacterController:
   m_ObjectHideFlags: 0

@@ -7,6 +7,7 @@ public class GameData : MonoBehaviour
     public static GameData Instance { get; private set; }
 
     [SerializeField] private ItemData[] _itemData;
+    [SerializeField] private Transform[] _enemyPatrolPoints;
 
     private Dictionary<ItemType, ItemData> _itemsInfo;
 
@@ -17,4 +18,6 @@ public class GameData : MonoBehaviour
     }
 
     public ItemData GetItemData(ItemType type) => _itemsInfo[type];
+
+    public Vector3 GetRandomEnemyPatrolPoint() => _enemyPatrolPoints[Random.Range(0, _enemyPatrolPoints.Length)].position;
 }

@@ -9,5 +9,6 @@ public enum AudioType
     Step,
     EmbientDay,
     EmbientNight,
-    Eat
+    Eat,
+    EnemyDamage
 }

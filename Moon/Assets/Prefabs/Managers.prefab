@@ -484,6 +484,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ecafca7736f2a8542b4640a7ad27ca8c, type: 2}
   - {fileID: 11400000, guid: c19aed659a7cec64d9805aedbe30ca30, type: 2}
   - {fileID: 11400000, guid: 5e49ce2eb9610d947a980636b02d1812, type: 2}
+  _enemyPatrolPoints: []
 --- !u!1 &6318543305378474626
 GameObject:
   m_ObjectHideFlags: 0
@@ -672,6 +673,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d8e117e7b91a5b647a8bd6812debe66e, type: 2}
   - {fileID: 11400000, guid: 4ec8ff7c40512e84fade0ffafd064fc9, type: 2}
   - {fileID: 11400000, guid: 830c245a99b8c6340bfa7467f62e61f7, type: 2}
+  - {fileID: 11400000, guid: 687a41100998805448483d82143d8a92, type: 2}
 --- !u!1 &8387395533161765102
 GameObject:
   m_ObjectHideFlags: 0

@@ -34,9 +34,11 @@ public class Player : MonoBehaviour
     public float bulletSpeed;
 
     [SerializeField] private Transform _cameraTransform;
+    [SerializeField] private Transform _centerPoint;
     [SerializeField] private GameObject _aimCamera;
     [SerializeField] private float _aimMovementOffset;
     [SerializeField] private float _shootDelay;
+    [SerializeField][Range(0.0f, 1.0f)] private float _damage;
 
     private bool _isAim;
     private bool _canShoot = true;
@@ -48,6 +50,8 @@ public class Player : MonoBehaviour
     // public RaycastHit raycastHit;
     // public bool isClimbingLadder;
     // private Vector3 lastGrabLadderDirection;
+
+    public Transform CenterPoint => _centerPoint;
 
     void Start()
     {
@@ -173,18 +177,24 @@ public class Player : MonoBehaviour
         AudioManager.Instanse.Play(AudioType.Step);
     }
 
+    public void AddDamage(float value)
+    {
+        UiManager.Instance.AddHealth(-value);
+    }
+
     void Shoot()
     {
         if (_canShoot)
         {
-            var direction = spawnHBullets.forward;
             var ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f));
-            if (Physics.Raycast(ray, out var hit, 100.0f))
+            var direction = ray.direction * 50.0f;
+            if (Physics.Raycast(ray, out var hit, 50.0f))
             {
                 direction = hit.point - spawnHBullets.position;
             }
             var bullet = Instantiate(heroBullet, spawnHBullets.position, spawnHBullets.rotation);
-            bullet.GetComponent<Rigidbody>().velocity = direction * bulletSpeed;
+            bullet.GetComponent<Rigidbody>().velocity = direction.normalized * bulletSpeed;
+            bullet.GetComponent<Bullet>().Damage = _damage;
             animator.SetTrigger("Shoot");
             AudioManager.Instanse.Play(AudioType.Shoot);
             _canShoot = false;
