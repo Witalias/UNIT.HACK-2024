@@ -34,6 +34,8 @@ public class Player : MonoBehaviour
     [SerializeField] private Transform _cameraTransform;
     [SerializeField] private GameObject _aimCamera;
 
+    private bool _isAim;
+
     //Ladder
     // public Transform chTransform;
     // bool inside = false;
@@ -54,6 +56,20 @@ public class Player : MonoBehaviour
         //inside = false;
     }
 
+    private void OnEnable()
+    {
+        Garden.OnInteract += PlayInteractAnimation;
+        Garden.PlayerIsAim += GetIsAim;
+        InteractableWithInfo.PlayerIsAim += GetIsAim;
+    }
+
+    private void OnDisable()
+    {
+        Garden.OnInteract -= PlayInteractAnimation;
+        Garden.PlayerIsAim -= GetIsAim;
+        InteractableWithInfo.PlayerIsAim -= GetIsAim;
+    }
+
     void Update()
     {
         float horizontalInput = Input.GetAxis("Horizontal");
@@ -62,7 +78,7 @@ public class Player : MonoBehaviour
         Vector3 movementDirection = new Vector3(horizontalInput, 0, verticallInput);
         float magnitude = Mathf.Clamp01(movementDirection.magnitude) * speednow; //for gamepads
         var offset = 0.0f;
-        if (Input.GetButton("Fire2"))
+        if (_isAim)
             offset = 14.0f;
         movementDirection = Quaternion.AngleAxis(_cameraTransform.eulerAngles.y - offset, Vector3.up) * movementDirection;
         movementDirection.Normalize();
@@ -127,16 +143,18 @@ public class Player : MonoBehaviour
         if (Input.GetButtonDown("Fire2"))
         {
             Vector3 dirToCombatLookAt = _aimCamera.transform.position - new Vector3(transform.position.x, _aimCamera.transform.position.y, transform.position.z);
-            transform.forward = -dirToCombatLookAt.normalized;
+            transform.forward = dirToCombatLookAt.normalized;
+            _isAim = true;
             animator.SetBool("Aim", true);
             _aimCamera.SetActive(true);
         }
         if (Input.GetButtonUp("Fire2"))
         {
+            _isAim = false;
             animator.SetBool("Aim", false);
             _aimCamera.SetActive(false);
         }
-        if (Input.GetButton("Fire2"))
+        if (_isAim)
         {
             Vector3 dirToCombatLookAt = _aimCamera.transform.position - new Vector3(transform.position.x, _aimCamera.transform.position.y, transform.position.z);
             transform.forward = -dirToCombatLookAt.normalized;
@@ -156,6 +174,13 @@ public class Player : MonoBehaviour
         animator.SetBool("Run", value);
         speednow = value ? fastspeed : speed;
     }
+
+    private void PlayInteractAnimation()
+    {
+        animator.SetTrigger("Interact");
+    }
+
+    private bool GetIsAim() => _isAim;
 
     private void OnApplicationFocus(bool focus)
     {
