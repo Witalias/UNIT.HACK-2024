@@ -77,7 +77,7 @@ public class UiManager : MonoBehaviour
 
     public void RefreshObjectInfoPosition(Vector3 position)
     {
-        _objectInfoPopup.transform.position = _mainCamera.WorldToScreenPoint(position);
+        _objectInfoPopup.transform.position = _mainCamera.WorldToScreenPoint(position) - new Vector3(20.0f, 20.0f);
     }
 
     private IEnumerator CheckMouseOver()

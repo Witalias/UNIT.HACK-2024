@@ -111,7 +111,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 57bd31e0f69732149b7c74daed09a139, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 57bd31e0f69732149b7c74daed09a139, type: 3}
       propertyPath: m_LocalPosition.x
@@ -548,6 +548,7 @@ MonoBehaviour:
   bulletSpeed: 20
   _cameraTransform: {fileID: 0}
   _aimCamera: {fileID: 0}
+  _aimMovementOffset: 18.5
 --- !u!143 &7722367924078725465
 CharacterController:
   m_ObjectHideFlags: 0

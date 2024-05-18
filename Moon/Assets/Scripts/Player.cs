@@ -33,6 +33,7 @@ public class Player : MonoBehaviour
 
     [SerializeField] private Transform _cameraTransform;
     [SerializeField] private GameObject _aimCamera;
+    [SerializeField] private float _aimMovementOffset;
 
     private bool _isAim;
 
@@ -79,7 +80,7 @@ public class Player : MonoBehaviour
         float magnitude = Mathf.Clamp01(movementDirection.magnitude) * speednow; //for gamepads
         var offset = 0.0f;
         if (_isAim)
-            offset = 14.0f;
+            offset = _aimMovementOffset;
         movementDirection = Quaternion.AngleAxis(_cameraTransform.eulerAngles.y - offset, Vector3.up) * movementDirection;
         movementDirection.Normalize();
 
@@ -160,7 +161,7 @@ public class Player : MonoBehaviour
             transform.forward = -dirToCombatLookAt.normalized;
         }
 
-        SetRunState(Input.GetKey(KeyCode.LeftShift) && charController.isGrounded);
+        SetRunState(Input.GetKey(KeyCode.LeftShift));
     }
 
     void Shoot()
