@@ -15,4 +15,4 @@ MonoBehaviour:
   _plantType: 6
   _seedType: 7
   _prefab: {fileID: 7838684683401036877, guid: 9c6186338b49e3c4aa561fdb3b36c113, type: 3}
-  _growthDuration: 40
+  _growthDuration: 180

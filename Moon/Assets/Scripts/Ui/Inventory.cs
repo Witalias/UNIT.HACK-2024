@@ -46,7 +46,6 @@ public class Inventory : MonoBehaviour
             .Play();
         _nameText.text = "";
         Add(ItemType.Plant1Seed);
-        Add(ItemType.Plant1Seed);
     }
 
     private void Update()

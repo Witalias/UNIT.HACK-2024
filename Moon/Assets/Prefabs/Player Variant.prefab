@@ -797,7 +797,7 @@ MonoBehaviour:
   speed: 5
   fastspeed: 10
   rotationSpeed: 200
-  jumpSpeed: 5
+  jumpSpeed: 9
   heroBullet: {fileID: 6692728257152003529, guid: fa90112b494a8da4c96fd664a6d1af70, type: 3}
   spawnHBullets: {fileID: 8723985232528615147}
   bulletSpeed: 200

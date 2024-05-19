@@ -61,6 +61,7 @@ public class Player : MonoBehaviour
         originalStepOffset = charController.stepOffset;
 
         speednow = speed;
+        Cursor.lockState = CursorLockMode.Locked;
 
         //inside = false;
     }
@@ -111,7 +112,8 @@ public class Player : MonoBehaviour
         //jump buffer time
         if (Input.GetButtonDown("Jump"))
         {
-            animator.SetBool("Jump", true);
+            if (!_isAim)
+                animator.SetBool("Jump", true);
             jumpBufferCounter = jumpBufferTime;
         }
         else
@@ -186,12 +188,14 @@ public class Player : MonoBehaviour
 
     public void PlayStep()
     {
-        AudioManager.Instanse.Play(AudioType.Step, _stepsAudioSource);
+        if (charController.isGrounded)
+            AudioManager.Instanse.Play(AudioType.Step, _stepsAudioSource);
     }
 
     public void PlayRunStep()
     {
-        AudioManager.Instanse.Play(AudioType.RunStep, _stepsAudioSource, false, 0.7f);
+        if (charController.isGrounded)
+            AudioManager.Instanse.Play(AudioType.RunStep, _stepsAudioSource, false, 0.7f);
     }
 
     public void AddDamage(float value)
@@ -249,15 +253,15 @@ public class Player : MonoBehaviour
 
     private bool GetIsAim() => _isAim;
 
-    private void OnApplicationFocus(bool focus)
-    {
-        if (focus)
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-        }
-        else
-        {
-            Cursor.lockState = CursorLockMode.None;
-        }
-    }
+    //private void OnApplicationFocus(bool focus)
+    //{
+    //    if (focus)
+    //    {
+    //        Cursor.lockState = CursorLockMode.Locked;
+    //    }
+    //    else
+    //    {
+    //        Cursor.lockState = CursorLockMode.None;
+    //    }
+    //}
 }

@@ -11,6 +11,7 @@ public class TaskPanel : MonoBehaviour
     private void Awake()
     {
         _totalNotes = FindObjectsByType<NoteObject>(FindObjectsSortMode.None).Length;
+        UpdateText();
     }
 
     private void OnEnable()
@@ -26,6 +27,11 @@ public class TaskPanel : MonoBehaviour
     private void AddNote()
     {
         _collectedNotesCount++;
+        UpdateText();
+    }
+
+    private void UpdateText()
+    {
         _notesText.text = $"Найди записки: <color=yellow><b>{_collectedNotesCount} / {_totalNotes}</b></color>";
     }
 }
