@@ -11,6 +11,7 @@ public class Garden : MonoBehaviour
     [SerializeField] private Interactable _interactable;
     [SerializeField] private Transform _plantPoint;
     [SerializeField] private Transform _topPoint;
+    [SerializeField] private GameObject _cupol;
     [SerializeField] private PlantData[] _plantData;
 
     private GrowthStage _stage = GrowthStage.Empty;
@@ -42,6 +43,7 @@ public class Garden : MonoBehaviour
     private void Start()
     {
         _interactable.SubscribeOnMouseIsOver(MouseIsOver);
+        _cupol.SetActive(false);
     }
 
     private void Update()
@@ -135,6 +137,7 @@ public class Garden : MonoBehaviour
             ProcessGrowth();
             OnStageChanged();
             OnInteract?.Invoke();
+            _cupol.SetActive(true);
         }
     }
 
@@ -181,6 +184,7 @@ public class Garden : MonoBehaviour
             _stage = GrowthStage.Empty;
             Destroy(_currentPlantObj);
             OnInteract?.Invoke();
+            _cupol.SetActive(false);
         }
     }
 
@@ -195,6 +199,7 @@ public class Garden : MonoBehaviour
             OnStageChanged();
             Destroy(_currentPlantObj);
             OnInteract?.Invoke();
+            _cupol.SetActive(false);
         }
     }
 

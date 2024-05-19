@@ -34,6 +34,8 @@ public class ItemObject : MonoBehaviour
     private void PickUp()
     {
         Inventory.Instance.Add(_type);
+        if (_type is ItemType.Water)
+            Inventory.Instance.Add(_type);
         UiManager.Instance.HideHotkeys();
         UiManager.Instance.HideObjectInfo();
         AudioManager.Instanse.Play(AudioType.PickUp);
