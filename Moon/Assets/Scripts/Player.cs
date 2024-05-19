@@ -39,6 +39,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float _aimMovementOffset;
     [SerializeField] private float _shootDelay;
     [SerializeField][Range(0.0f, 1.0f)] private float _damage;
+    [SerializeField] private AudioSource _stepsAudioSource;
 
     private bool _isAim;
     private bool _canShoot = true;
@@ -71,6 +72,7 @@ public class Player : MonoBehaviour
         HealthBar.OnEated += PlayInteractAnimation;
         Garden.PlayerIsAim += GetIsAim;
         InteractableWithInfo.PlayerIsAim += GetIsAim;
+        HealthBar.OnDeath += PlayDeath;
     }
 
     private void OnDisable()
@@ -80,6 +82,7 @@ public class Player : MonoBehaviour
         HealthBar.OnEated -= PlayInteractAnimation;
         Garden.PlayerIsAim -= GetIsAim;
         InteractableWithInfo.PlayerIsAim -= GetIsAim;
+        HealthBar.OnDeath -= PlayDeath;
     }
 
     void Update()
@@ -89,10 +92,13 @@ public class Player : MonoBehaviour
 
         Vector3 movementDirection = new Vector3(horizontalInput, 0, verticallInput);
         float magnitude = Mathf.Clamp01(movementDirection.magnitude) * speednow; //for gamepads
-        var offset = 0.0f;
-        if (_isAim)
-            offset = _aimMovementOffset;
-        movementDirection = Quaternion.AngleAxis(_cameraTransform.eulerAngles.y - offset, Vector3.up) * movementDirection;
+        //var offset = 0.0f;
+        //if (_isAim)
+        //    offset = _aimMovementOffset;
+        if (!_isAim)
+            movementDirection = Quaternion.AngleAxis(_cameraTransform.eulerAngles.y, Vector3.up) * movementDirection;
+        else
+            movementDirection = _cameraTransform.forward * verticallInput + _cameraTransform.right * horizontalInput;
         movementDirection.Normalize();
 
         fallSpeed += Physics.gravity.y * Time.deltaTime;
@@ -147,7 +153,7 @@ public class Player : MonoBehaviour
 
         if (Input.GetButtonDown("Fire1") && _isAim)
         {
-            Shoot();
+            StartCoroutine(Shoot());
         }
 
         if (_isAim)
@@ -157,7 +163,7 @@ public class Player : MonoBehaviour
         if (Input.GetButtonDown("Fire2"))
         {
             //var angle = Quaternion.LookRotation(_cameraTransform.position - transform.position).eulerAngles;
-            //transform.eulerAngles = new Vector3(0.0f, _cameraTransform.eulerAngles.y, 0.0f);
+            //transform.eulerAngles = new Vector3(0.0f, _aimCamera.transform.eulerAngles.y, 0.0f);
             _isAim = true;
             animator.SetBool("Aim", true);
             _aimCamera.SetActive(true);
@@ -174,7 +180,12 @@ public class Player : MonoBehaviour
 
     public void PlayStep()
     {
-        AudioManager.Instanse.Play(AudioType.Step);
+        AudioManager.Instanse.Play(AudioType.Step, _stepsAudioSource);
+    }
+
+    public void PlayRunStep()
+    {
+        AudioManager.Instanse.Play(AudioType.RunStep, _stepsAudioSource, false, 0.7f);
     }
 
     public void AddDamage(float value)
@@ -182,16 +193,33 @@ public class Player : MonoBehaviour
         UiManager.Instance.AddHealth(-value);
     }
 
-    void Shoot()
+    [ContextMenu("Kill")]
+    public void Kill()
+    {
+        UiManager.Instance.AddHealth(-1.0f);
+    }
+
+    private void PlayDeath()
+    {
+        animator.SetTrigger("Death");
+    }
+
+    private IEnumerator Shoot()
     {
         if (_canShoot)
         {
+            yield return new WaitForEndOfFrame();
             var ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f));
             var direction = ray.direction * 50.0f;
             if (Physics.Raycast(ray, out var hit, 50.0f))
             {
                 direction = hit.point - spawnHBullets.position;
             }
+            //var direction = _cameraTransform.position + _cameraTransform.forward * 50.0f;
+            //if (Physics.Raycast(_cameraTransform.position, _cameraTransform.forward, out var hit, 50.0f))
+            //{
+            //    direction = hit.point - spawnHBullets.position;
+            //}
             var bullet = Instantiate(heroBullet, spawnHBullets.position, spawnHBullets.rotation);
             bullet.GetComponent<Rigidbody>().velocity = direction.normalized * bulletSpeed;
             bullet.GetComponent<Bullet>().Damage = _damage;

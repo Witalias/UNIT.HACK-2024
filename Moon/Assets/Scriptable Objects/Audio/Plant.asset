@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Plant
   m_EditorClassIdentifier: 
   _type: 3
-  _clips: []
+  _clips:
+  - {fileID: 8300000, guid: e3cadefaa479102478cbeb7513d24e83, type: 3}

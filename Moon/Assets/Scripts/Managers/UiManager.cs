@@ -85,9 +85,9 @@ public class UiManager : MonoBehaviour
         _objectInfoPopup.Show(title, description);
     }
 
-    public void ShowObjectInfo(string title, string description, bool edible)
+    public void ShowObjectInfo(string title, string description, bool edible, bool extracted = false)
     {
-        _objectInfoPopup.Show(title, description, edible);
+        _objectInfoPopup.Show(title, description, edible, extracted);
     }
 
     public void HideObjectInfo()
@@ -105,9 +105,9 @@ public class UiManager : MonoBehaviour
         _healthBar.Add(value);
     }
 
-    public void ShowNote(string text, bool activeImage = false)
+    public void ShowNote(string text, bool activeImage = false, bool showRestart = false)
     {
-        _notePopup.Show(text, activeImage);
+        _notePopup.Show(text, activeImage, showRestart);
     }
 
     private IEnumerator CheckMouseOver()

@@ -32,8 +32,9 @@ public class NoteObject : MonoBehaviour
     private void Read()
     {
         UiManager.Instance.HideHotkeys();
-        UiManager.Instance.ShowNote(_text, _activeImage);
+        UiManager.Instance.HideObjectInfo();
         AudioManager.Instanse.Play(AudioType.Paper);
+        UiManager.Instance.ShowNote(_text, _activeImage);
         Destroy(gameObject);
     }
 }

@@ -17,6 +17,11 @@ public class GameData : MonoBehaviour
         _itemsInfo = _itemData.ToDictionary(data => data.Type);
     }
 
+    private void Start()
+    {
+        //AudioManager.Instanse.PlayMusic(AudioType.Music);
+    }
+
     public ItemData GetItemData(ItemType type) => _itemsInfo[type];
 
     public Vector3 GetRandomEnemyPatrolPoint() => _enemyPatrolPoints[Random.Range(0, _enemyPatrolPoints.Length)].position;

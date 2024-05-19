@@ -20,7 +20,22 @@ public class InteractableWithInfo : Interactable
                 if (!_isShown)
                 {
                     _isShown = true;
-                    UiManager.Instance.ShowObjectInfo(_title, _description);
+                    if (CompareTag("Edible"))
+                    {
+                        var wildPlant = GetComponent<EdibleWildPlant>();
+                        if (wildPlant.ContainSeed)
+                            UiManager.Instance.ShowObjectInfo(_title, _description, true);
+                        else
+                            UiManager.Instance.ShowObjectInfo(_title, _description, true, true);
+                    }
+                    else if (CompareTag("Not Edible"))
+                    {
+                        UiManager.Instance.ShowObjectInfo(_title, _description, false);
+                    }
+                    else
+                    {
+                        UiManager.Instance.ShowObjectInfo(_title, _description);
+                    }
                 }
                 UiManager.Instance.RefreshObjectInfoPosition(transform.position);
             }

@@ -10,5 +10,10 @@ public enum AudioType
     EmbientDay,
     EmbientNight,
     Eat,
-    EnemyDamage
+    EnemyDamage,
+    Music,
+    Fertilize,
+    PlayerDamage,
+    RunStep,
+    PlayerDeath
 }

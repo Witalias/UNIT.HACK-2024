@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Shoot
   m_EditorClassIdentifier: 
   _type: 0
-  _clips: []
+  _clips:
+  - {fileID: 8300000, guid: ddecd23688fea514fb0abbb9bd1778fc, type: 3}

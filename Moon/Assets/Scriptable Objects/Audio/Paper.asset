@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Paper
   m_EditorClassIdentifier: 
   _type: 2
-  _clips: []
+  _clips:
+  - {fileID: 8300000, guid: 81cd78bb8c2e3bd4d9ecb4e628535936, type: 3}

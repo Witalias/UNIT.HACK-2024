@@ -13,4 +13,7 @@ MonoBehaviour:
   m_Name: Enemy Damage
   m_EditorClassIdentifier: 
   _type: 10
-  _clips: []
+  _clips:
+  - {fileID: 8300000, guid: e637ebb2914cd7e46999bea978801639, type: 3}
+  - {fileID: 8300000, guid: e43f5320111b0634790294dc286d1a1a, type: 3}
+  - {fileID: 8300000, guid: 997b29cdb580c3949be6bf692622b381, type: 3}

@@ -17,6 +17,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private SkinnedMeshRenderer _skinnedMeshRenderer;
     [SerializeField] private Bullet _projectilePrefab;
     [SerializeField] private Transform _bulletSpawnPoint;
+    [SerializeField] private AudioSource _audioSource;
 
     private Vector3 _target;
     private Tween _currentTween;
@@ -58,10 +59,12 @@ public class Enemy : MonoBehaviour
             var color = _skinnedMeshRenderer.material.color;
             _skinnedMeshRenderer.material.color = Color.red;
             DOVirtual.DelayedCall(0.2f, () => _skinnedMeshRenderer.material.color = color);
-            AudioManager.Instanse.Play(AudioType.EnemyDamage);
+            AudioManager.Instanse.Play(AudioType.EnemyDamage, _audioSource);
             StopAndPatrol();
             if (_health <= 0.0f)
             {
+                _canShoot = false;
+                _worried = false;
                 _animator.SetTrigger("Death");
                 _rigidbody.useGravity = true;
                 DOVirtual.DelayedCall(3.0f, () => Destroy(gameObject));

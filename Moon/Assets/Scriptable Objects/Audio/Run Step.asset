@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a0add565c5adbc45b07848fe0ac3a6c, type: 3}
+  m_Name: Run Step
+  m_EditorClassIdentifier: 
+  _type: 14
+  _clips:
+  - {fileID: 8300000, guid: f5e8c37fe20fd5c46866ccca755d4434, type: 3}
+  - {fileID: 8300000, guid: 24a765fcc8692a24ea578c657c775d34, type: 3}
+  - {fileID: 8300000, guid: 158f39d8565c0c34684660da8c52e238, type: 3}
+  - {fileID: 8300000, guid: 6b624eea656d7b04792fc74e62467d00, type: 3}
+  - {fileID: 8300000, guid: 6b3ae1a94428263449243e98af229ad0, type: 3}
+  - {fileID: 8300000, guid: 23d76c8fc34f22d45aaebc0f54dbbb41, type: 3}
+  - {fileID: 8300000, guid: 7892632240c715c4ba590711b43cbbae, type: 3}
+  - {fileID: 8300000, guid: 0bd886cd8d0e14943ae5dcad14fc9bf5, type: 3}
+  - {fileID: 8300000, guid: 7861e20def956254ab7c95bd2198c597, type: 3}
+  - {fileID: 8300000, guid: 5c3cc6f013b43104385d0fbc8e537053, type: 3}

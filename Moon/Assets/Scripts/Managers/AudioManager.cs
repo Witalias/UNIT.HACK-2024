@@ -22,6 +22,12 @@ public class AudioManager : MonoBehaviour
         _sounds = _audioData.ToDictionary(audio => audio.Type, audio => audio.Clips);
     }
 
+    private void Update()
+    {
+        if (musicAudioSource != null && !musicAudioSource.isPlaying)
+            PlayMusic(AudioType.Music);
+    }
+
     public void Play(AudioType sound, AudioSource source = null, bool singleSound = false, float volume = 1.0f)
     {
         if (source == null)

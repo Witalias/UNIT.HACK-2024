@@ -18,19 +18,19 @@ public class ObjectInfoPopup : MonoBehaviour
 
     public void Show(string title, string description)
     {
-        if (!_isShown)
-        {
-            _isShown = true;
-            _titleText.text = title;
-            _descriptionText.text = description;
-            _currentTween?.Kill();
-            _currentTween = _panel.DOFade(1.0f, 0.25f);
-        }
+        _isShown = true;
+        _titleText.text = title;
+        _descriptionText.text = description;
+        _currentTween?.Kill();
+        _currentTween = _panel.DOFade(1.0f, 0.25f);
     }
 
-    public void Show(string title, string description, bool edible)
+    public void Show(string title, string description, bool edible, bool extracted)
     {
-        title += $"\n{(edible ? "<color=green>Съедобно" : "<color=red>Несъедобно")}</color>";
+        if (edible && extracted)
+            title += "\n<color=#B5B5B5>Семя извлечено</color>";
+        else
+            title += $"\n{(edible ? "<color=green>Съедобно" : "<color=red>Несъедобно")}</color>";
         Show(title, description);
     }
 

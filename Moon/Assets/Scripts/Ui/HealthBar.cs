@@ -7,8 +7,10 @@ public class HealthBar : UIBar
     [SerializeField] private float _decreaseSpeed;
 
     private float _value = 1.0f;
+    private bool _isDeath;
 
     public static event Action OnEated;
+    public static event Action OnDeath;
 
     private void Start()
     {
@@ -27,8 +29,20 @@ public class HealthBar : UIBar
 
     public void Add(float value)
     {
-        _value = Mathf.Clamp01(_value + value);
-        SetValue(_value, 1.0f);
+        if (!_isDeath)
+        {
+            _value = Mathf.Clamp01(_value + value);
+            SetValue(_value, 1.0f);
+            if (_value <= 0.0f)
+            {
+                StopAllCoroutines();
+                Death();
+            }
+            else if (value < 0.0f)
+            {
+                AudioManager.Instanse.Play(AudioType.PlayerDamage);
+            }
+        }
     }
 
     private IEnumerator ProcessDeacrease()
@@ -45,5 +59,9 @@ public class HealthBar : UIBar
     private void Death()
     {
         Debug.Log("Death");
+        UiManager.Instance.ShowNote("Вы мертвы...", false, true);
+        OnDeath?.Invoke();
+        _isDeath = true;
+        AudioManager.Instanse.Play(AudioType.PlayerDeath);
     }
 }

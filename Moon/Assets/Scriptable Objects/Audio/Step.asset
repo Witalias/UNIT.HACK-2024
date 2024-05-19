@@ -13,4 +13,10 @@ MonoBehaviour:
   m_Name: Step
   m_EditorClassIdentifier: 
   _type: 6
-  _clips: []
+  _clips:
+  - {fileID: 8300000, guid: af867e293397e0d488e3e400a6479ece, type: 3}
+  - {fileID: 8300000, guid: 8c6969f598fa36e498664d76f42fb050, type: 3}
+  - {fileID: 8300000, guid: 01e43f23fcfaf9f4997f3d665f42ddc9, type: 3}
+  - {fileID: 8300000, guid: 2b822b8b3cc3b1046935bb40836cdf7a, type: 3}
+  - {fileID: 8300000, guid: 4311bdf830623f34eb4e785a22672074, type: 3}
+  - {fileID: 8300000, guid: 53ef3203553b21943a132a1d2e575929, type: 3}
