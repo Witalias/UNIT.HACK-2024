@@ -794,8 +794,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 249b53a62c0e7864f99b57c755bd66ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
-  fastspeed: 8
+  speed: 5
+  fastspeed: 10
   rotationSpeed: 200
   jumpSpeed: 5
   heroBullet: {fileID: 6692728257152003529, guid: fa90112b494a8da4c96fd664a6d1af70, type: 3}
