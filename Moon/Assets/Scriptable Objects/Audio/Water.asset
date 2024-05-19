@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Water
   m_EditorClassIdentifier: 
   _type: 4
-  _clips: []
+  _clips:
+  - {fileID: 8300000, guid: fff55a83d612ce4468d90632f9b1f867, type: 3}

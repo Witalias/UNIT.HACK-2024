@@ -880,6 +880,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 36f88937a15b681428965c5d969fb279, type: 2}
   - {fileID: 11400000, guid: a01dfd0948a94c64e9ca438504dfada5, type: 2}
   - {fileID: 11400000, guid: 2ece8c130cd93dd4898df6dfaef4d050, type: 2}
+  - {fileID: 11400000, guid: 9b2c47fb51f757444a3225ac5e229bb6, type: 2}
 --- !u!1 &8387395533161765102
 GameObject:
   m_ObjectHideFlags: 0
@@ -915,5 +916,5 @@ Transform:
   - {fileID: 6662769208968065291}
   - {fileID: 6825899715148287020}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
