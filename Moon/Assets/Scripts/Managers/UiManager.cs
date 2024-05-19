@@ -97,7 +97,7 @@ public class UiManager : MonoBehaviour
 
     public void RefreshObjectInfoPosition(Vector3 position)
     {
-        _objectInfoPopup.transform.position = _mainCamera.WorldToScreenPoint(position) + new Vector3(-200.0f, 200.0f);
+        _objectInfoPopup.transform.position = _mainCamera.WorldToScreenPoint(position) + new Vector3(-200.0f, 400.0f);
     }
 
     public void AddHealth(float value)

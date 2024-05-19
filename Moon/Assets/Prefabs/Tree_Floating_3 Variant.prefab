@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: e4b8326cf8930dd418ff1f4ed3337869, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e4b8326cf8930dd418ff1f4ed3337869, type: 3}
       propertyPath: m_LocalScale.x
@@ -71,6 +71,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: e4b8326cf8930dd418ff1f4ed3337869, type: 3}
       propertyPath: m_Name
       value: Tree_Floating_3 Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e4b8326cf8930dd418ff1f4ed3337869, type: 3}
+      propertyPath: m_TagString
+      value: Edible
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
