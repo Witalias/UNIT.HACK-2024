@@ -18,7 +18,7 @@ public class SpawnSouls : MonoBehaviour
 
     void Spawn()
     {
-         for ( int i = 0; i < 4; i++) 
+         for ( int i = 0; i < 8; i++) 
         { 
             var spawn = Random.Range(0, spawnPoints.Count);
             if (spawnPoints.Count == 0) 
