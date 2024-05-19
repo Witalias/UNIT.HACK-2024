@@ -129,7 +129,7 @@ public class Garden : MonoBehaviour
         var selectedItem = Inventory.Instance.SelectedItem;
         if (_stage is GrowthStage.Empty && Inventory.Instance.IsSelect(_seeds) && Inventory.Instance.TryPeekSelected())
         {
-            _growthStep = 0;
+            _growthStep = 1;
             _currentPlantSeed = selectedItem.Value;
             _currentPlantObj = Instantiate(_plantsInfo[_currentPlantSeed].Prefab, _plantPoint.position, Quaternion.identity, transform);
             _stage = GrowthStage.Growth;
