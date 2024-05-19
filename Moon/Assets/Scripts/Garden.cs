@@ -177,6 +177,8 @@ public class Garden : MonoBehaviour
         if (_stage is GrowthStage.Harvest)
         {
             Inventory.Instance.Add(_plantsInfo[_currentPlantSeed].PlantType);
+            Inventory.Instance.Add(_currentPlantSeed);
+            Inventory.Instance.Add(_currentPlantSeed);
             _stage = GrowthStage.Empty;
             Destroy(_currentPlantObj);
             OnInteract?.Invoke();

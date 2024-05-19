@@ -103,10 +103,15 @@ public class Player : MonoBehaviour
 
         fallSpeed += Physics.gravity.y * Time.deltaTime;
 
+        if (charController.isGrounded)
+        {
+            animator.SetBool("Jump", false);
+        }
+
         //jump buffer time
         if (Input.GetButtonDown("Jump"))
         {
-            animator.SetBool("jumping", true);
+            animator.SetBool("Jump", true);
             jumpBufferCounter = jumpBufferTime;
         }
         else
@@ -167,6 +172,7 @@ public class Player : MonoBehaviour
             _isAim = true;
             animator.SetBool("Aim", true);
             _aimCamera.SetActive(true);
+            _aimCamera.GetComponent<CinemachineFreeLook>().m_YAxis.Value = 0.7f;
         }
         if (Input.GetButtonUp("Fire2"))
         {

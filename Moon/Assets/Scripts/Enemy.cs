@@ -59,7 +59,6 @@ public class Enemy : MonoBehaviour
             var color = _skinnedMeshRenderer.material.color;
             _skinnedMeshRenderer.material.color = Color.red;
             DOVirtual.DelayedCall(0.2f, () => _skinnedMeshRenderer.material.color = color);
-            AudioManager.Instanse.Play(AudioType.EnemyDamage, _audioSource);
             StopAndPatrol();
             if (_health <= 0.0f)
             {
@@ -131,6 +130,7 @@ public class Enemy : MonoBehaviour
         {
             yield return wait;
             _animator.SetTrigger("Shoot");
+            AudioManager.Instanse.Play(AudioType.EnemyDamage, _audioSource);
             var projectile = Instantiate(_projectilePrefab, _bulletSpawnPoint.position, Quaternion.identity);
             projectile.Damage = _damage;
             projectile.FromEnemy = true;

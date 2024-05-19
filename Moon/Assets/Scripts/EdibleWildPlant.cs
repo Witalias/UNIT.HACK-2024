@@ -17,19 +17,22 @@ public class EdibleWildPlant : MonoBehaviour
 
     private void Update()
     {
-        if (_interactable.MouseIsOver && Input.GetKeyDown(KeyCode.E))
+        if (_interactable.MouseIsOver && Input.GetKeyDown(KeyCode.E) && ContainSeed)
             GetSeed();
     }
 
     private void OnMouseIsOver(bool value)
     {
-        if (value)
+        if (ContainSeed)
         {
-            UiManager.Instance.ShowHotkeys(new Hotkey.Data { Key = "E", Description = "Извлечь семя" });
-        }
-        else
-        {
-            UiManager.Instance.HideHotkeys();
+            if (value)
+            {
+                UiManager.Instance.ShowHotkeys(new Hotkey.Data { Key = "E", Description = "Извлечь семя" });
+            }
+            else
+            {
+                UiManager.Instance.HideHotkeys();
+            }
         }
     }
 

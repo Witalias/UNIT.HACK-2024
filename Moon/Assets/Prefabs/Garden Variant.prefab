@@ -41,7 +41,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 208d66dc527efe34a951b9de6ac7230c, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 208d66dc527efe34a951b9de6ac7230c, type: 3}
       propertyPath: m_LocalScale.x
@@ -184,8 +184,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _interactable: {fileID: 5362731451884946267}
   _plantPoint: {fileID: 8914024373821723593}
+  _topPoint: {fileID: 0}
   _plantData:
   - {fileID: 11400000, guid: 83ccacc9860ff594184076638ca53250, type: 2}
+  - {fileID: 11400000, guid: c64895624274a6743aa567decb5cd7f8, type: 2}
+  - {fileID: 11400000, guid: a53f51efa0196674787bedbaa9918e5e, type: 2}
 --- !u!114 &5362731451884946267
 MonoBehaviour:
   m_ObjectHideFlags: 0

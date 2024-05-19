@@ -97,7 +97,7 @@ public class UiManager : MonoBehaviour
 
     public void RefreshObjectInfoPosition(Vector3 position)
     {
-        _objectInfoPopup.transform.position = _mainCamera.WorldToScreenPoint(position) + new Vector3(-150.0f, 100.0f);
+        _objectInfoPopup.transform.position = _mainCamera.WorldToScreenPoint(position) + new Vector3(-200.0f, 200.0f);
     }
 
     public void AddHealth(float value)
@@ -116,7 +116,7 @@ public class UiManager : MonoBehaviour
         while (true)
         {
             var ray = _mainCamera.ViewportPointToRay(new Vector2(0.5f, 0.5f));
-            if (Physics.Raycast(ray, out var hit, 10.0f, _excludePlayerLayers))
+            if (Physics.Raycast(ray, out var hit, 20.0f, _excludePlayerLayers))
             {
                 if (hit.collider.TryGetComponent<Interactable>(out var interactable))
                 {
