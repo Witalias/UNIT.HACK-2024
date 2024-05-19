@@ -65,6 +65,11 @@ public class Enemy : MonoBehaviour
             {
                 _canShoot = false;
                 _worried = false;
+                StopAllCoroutines();
+                _detectionTrigger.UnsubscribeOnEnter(OnPlayerDetectionTriggerEnter);
+                _detectionTrigger.UnsubscribeOnExit(OnPlayerDetectionTriggerExit);
+                _shootTrigger.UnsubscribeOnEnter(OnPlayerShootTriggerEnter);
+                _shootTrigger.UnsubscribeOnExit(OnPlayerShootTriggerExit);
                 _animator.SetTrigger("Death");
                 _rigidbody.useGravity = true;
                 DOVirtual.DelayedCall(3.0f, () => Destroy(gameObject));

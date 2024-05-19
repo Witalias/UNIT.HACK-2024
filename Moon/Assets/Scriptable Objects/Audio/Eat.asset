@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Eat
   m_EditorClassIdentifier: 
   _type: 9
-  _clips: []
+  _clips:
+  - {fileID: 8300000, guid: ffb322c9ce8f39b49b42664e30b24278, type: 3}

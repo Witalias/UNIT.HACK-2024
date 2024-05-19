@@ -10,6 +10,7 @@ public class Garden : MonoBehaviour
 
     [SerializeField] private Interactable _interactable;
     [SerializeField] private Transform _plantPoint;
+    [SerializeField] private Transform _topPoint;
     [SerializeField] private PlantData[] _plantData;
 
     private GrowthStage _stage = GrowthStage.Empty;
@@ -27,6 +28,8 @@ public class Garden : MonoBehaviour
         ItemType.Plant2Seed,
         ItemType.Plant3Seed
     };
+
+    public Vector3 TopPoint => _topPoint.position;
 
     public static event Action OnInteract;
     public static event Func<bool> PlayerIsAim;

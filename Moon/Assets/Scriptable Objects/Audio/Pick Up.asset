@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Pick Up
   m_EditorClassIdentifier: 
   _type: 1
-  _clips: []
+  _clips:
+  - {fileID: 8300000, guid: 180ad48a3fed904428a135075c8a8abe, type: 3}
