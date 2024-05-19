@@ -352,19 +352,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 57bd31e0f69732149b7c74daed09a139, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 57bd31e0f69732149b7c74daed09a139, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 115.81
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 57bd31e0f69732149b7c74daed09a139, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1.72
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 57bd31e0f69732149b7c74daed09a139, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 123.74
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 57bd31e0f69732149b7c74daed09a139, type: 3}
       propertyPath: m_LocalRotation.w
@@ -797,7 +797,7 @@ MonoBehaviour:
   speed: 3
   fastspeed: 5
   rotationSpeed: 200
-  jumpSpeed: 5
+  jumpSpeed: 10
   heroBullet: {fileID: 6692728257152003529, guid: fa90112b494a8da4c96fd664a6d1af70, type: 3}
   spawnHBullets: {fileID: 8723985232528615147}
   bulletSpeed: 200

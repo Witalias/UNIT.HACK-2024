@@ -178,7 +178,7 @@ MonoBehaviour:
   - {fileID: 0}
   _excludePlayerLayers:
     serializedVersion: 2
-    m_Bits: 119
+    m_Bits: 1143
   _plantInfoPopup: {fileID: 0}
   _objectInfoPopup: {fileID: 0}
   _healthBar: {fileID: 0}
@@ -479,7 +479,11 @@ MonoBehaviour:
   _maxCount: 0
   _initalCount: 3
   _enemyPrefab: {fileID: 3489196834484856055, guid: 5688d6937833233499339c8e43fe0ae5, type: 3}
-  _spawnPoints: []
+  _spawnPoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &3797182063210453123
 GameObject:
   m_ObjectHideFlags: 0
@@ -661,7 +665,27 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ecafca7736f2a8542b4640a7ad27ca8c, type: 2}
   - {fileID: 11400000, guid: c19aed659a7cec64d9805aedbe30ca30, type: 2}
   - {fileID: 11400000, guid: 5e49ce2eb9610d947a980636b02d1812, type: 2}
-  _enemyPatrolPoints: []
+  _enemyPatrolPoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &6318543305378474626
 GameObject:
   m_ObjectHideFlags: 0
@@ -891,5 +915,5 @@ Transform:
   - {fileID: 6662769208968065291}
   - {fileID: 6825899715148287020}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

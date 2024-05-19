@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _plantType: 6
   _seedType: 7
-  _prefab: {fileID: 9055162910660189506, guid: 80948dc2976df1542a20df15fc1b5324, type: 3}
+  _prefab: {fileID: 7838684683401036877, guid: 9c6186338b49e3c4aa561fdb3b36c113, type: 3}
   _growthDuration: 40
