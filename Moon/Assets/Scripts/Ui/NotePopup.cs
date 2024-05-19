@@ -46,6 +46,7 @@ public class NotePopup : MonoBehaviour
             .SetUpdate(true)
             .Play();
         _image.SetActive(activeImage);
+        _text.gameObject.SetActive(!activeImage);
         _restart = showRestart;
         if (showRestart)
         {

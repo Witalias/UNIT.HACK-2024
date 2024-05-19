@@ -11,6 +11,11 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene("Terrain");
     }
 
+    public void LoadMenu()
+    {
+        SceneManager.LoadScene("Main menu");
+    }
+
     public void ExitGame()
     {
         Application.Quit();
