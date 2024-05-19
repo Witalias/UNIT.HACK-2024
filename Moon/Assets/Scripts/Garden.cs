@@ -79,7 +79,6 @@ public class Garden : MonoBehaviour
         if (!_plantInfoIsShown)
         {
             _plantInfoIsShown = true;
-            _currentPlantSeed = ItemType.Plant1Seed;
             var title = "Грядка";
             var properties = GetProperties();
             var propertiesText = $"Состояние: {properties.State}\n";
