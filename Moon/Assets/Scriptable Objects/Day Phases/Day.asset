@@ -15,7 +15,7 @@ MonoBehaviour:
   _type: 0
   _sunColor: {r: 1, g: 0.9989852, b: 0.90943396, a: 1}
   _sunIntensity: 1
-  _phaseDuration: 40
-  _transitionDuration: 40
+  _phaseDuration: 1
+  _transitionDuration: 2
   _skipPhase: 0
   _embientAudio: 7

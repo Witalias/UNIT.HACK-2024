@@ -54,6 +54,7 @@ public class DayCycle : MonoBehaviour
         _currentTween = DOTween.Sequence()
             .Append(_sun.DOColor(phase.SunColor, phase.TransitionDuration))
             .Insert(0, _sun.DOIntensity(phase.SunIntensity, phase.TransitionDuration))
+            .SetEase(Ease.Linear)
             .OnComplete(() =>
             {
                 GPhaseChanged?.Invoke(phase.Type);

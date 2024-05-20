@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Evening
   m_EditorClassIdentifier: 
   _type: 1
-  _sunColor: {r: 1, g: 0.67058825, b: 0.52156866, a: 1}
+  _sunColor: {r: 1, g: 0.48883176, b: 0.2584905, a: 1}
   _sunIntensity: 1
-  _phaseDuration: 20
-  _transitionDuration: 40
+  _phaseDuration: 0
+  _transitionDuration: 2
   _skipPhase: 0
   _embientAudio: 8

@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _type: 2
   _sunColor: {r: 0.5137255, g: 0.5921569, b: 1, a: 1}
-  _sunIntensity: 0.4
-  _phaseDuration: 40
-  _transitionDuration: 40
+  _sunIntensity: 0
+  _phaseDuration: 1
+  _transitionDuration: 2
   _skipPhase: 0
   _embientAudio: 8
